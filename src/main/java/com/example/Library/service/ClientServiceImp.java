@@ -17,7 +17,7 @@ import java.util.List;
 public class ClientServiceImp implements IClientService{
 
     @Autowired
-    private LibraryRepository<Client, java.io.Serializable> libraryRepository;
+    private LibraryRepository<Client> libraryRepository;
 
    private ModelMapper modelMapper = new ModelMapper();
 
@@ -41,15 +41,12 @@ public class ClientServiceImp implements IClientService{
         return clienteRepository.getReferenceById(id);
     }*/
 
-
     @Override
     public List<ClientResponseDto> listClient() {
-        System.out.println(libraryRepository.findAll());
-       /* libraryRepository.findAll()
+         return  libraryRepository.findAll()
                 .stream()
                 .map(element -> modelMapper.map(element,ClientResponseDto.class))
-                .toList();*/
-        return new ArrayList<>();
+                .toList();
     }
 
     @Override

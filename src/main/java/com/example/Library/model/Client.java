@@ -1,16 +1,19 @@
 package com.example.Library.model;
 
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.*;
 
-@Getter @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+import java.io.Serializable;
+
+@Setter @Getter
 @Entity
-public class Client extends ClassBase{
+public class Client implements Serializable, ClassBase<Client>{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private Long documento;
     private String nombre;
     private String apellido;

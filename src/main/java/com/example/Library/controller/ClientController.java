@@ -2,13 +2,17 @@ package com.example.Library.controller;
 
 import com.example.Library.dto.request.ClientRequestDto;
 import com.example.Library.dto.request.MensajeDto;
+import com.example.Library.dto.response.ClientResponseDto;
 import com.example.Library.service.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 @RestController("client")
@@ -20,10 +24,10 @@ public class ClientController {
     public ResponseEntity<?> cliente(@RequestBody ClientRequestDto clientRequestDto){
         return new ResponseEntity<>(new MensajeDto(clientService.create(clientRequestDto)), HttpStatus.OK);
     }
-    /*@GetMapping("/list")
+    @GetMapping("/list")
     public ResponseEntity<List<ClientResponseDto>> list(){
-        return new ResponseEntity<>(clientService.listCliente(),HttpStatus.OK);
-    }*/
+        return new ResponseEntity<>(clientService.listClient(),HttpStatus.OK);
+    }
     /*
     @GetMapping("/update/{id}")
     public String update(@PathVariable String id, ModelMap model){
