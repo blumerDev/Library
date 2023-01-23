@@ -52,7 +52,7 @@ Ir al directorio del repositorio
 
 Abrir el IDE, compilar y correr con maven 
 
-## Enpoint on swagger 
+## Enpoint con swagger 
 
 ```bash
  http://localhost:8080/swagger-ui/index.html
