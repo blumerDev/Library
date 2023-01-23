@@ -38,4 +38,22 @@ El proyecto es una API para poder manejar una biblioteca
 |       |  | **Devuelve la lista de todos los clientes|
 
 
+Clonar el repositorio
+
+```bash
+  git clone https://github.com/blumerDev/Library/tree/dev
+```
+
+Ir al directorio del repositorio 
+
+```bash
+  cd Library
+```
+
+Abrir el IDE, compilar y correr con maven 
+
+## Enpoint on swagger 
+
+```bash
+ http://localhost:8080/swagger-ui/index.html
 
