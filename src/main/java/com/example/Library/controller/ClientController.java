@@ -19,10 +19,9 @@ import java.util.List;
 public class ClientController {
     @Autowired
     private IClientService clientService;
-
-    @PostMapping("/register")
+    @PostMapping("/addNewClient")
     public ResponseEntity<?> cliente(@RequestBody ClientRequestDto clientRequestDto){
-        return new ResponseEntity<>(new MensajeDto(clientService.create(clientRequestDto)), HttpStatus.OK);
+        return new ResponseEntity<>(new MensajeDto(clientService.addNewClient(clientRequestDto)), HttpStatus.OK);
     }
     @GetMapping("/list")
     public ResponseEntity<List<ClientResponseDto>> list(){

@@ -9,6 +9,7 @@ import lombok.*;
 import java.io.Serializable;
 
 @Setter @Getter
+
 @Entity
 public class Client implements Serializable, ClassBase<Client>{
     @Id

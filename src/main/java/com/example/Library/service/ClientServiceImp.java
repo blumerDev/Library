@@ -57,7 +57,7 @@ public class ClientServiceImp implements IClientService{
     }
     @Transactional
     @Override
-    public String create(ClientRequestDto clientRequestDto){
+    public String addNewClient(ClientRequestDto clientRequestDto){
            try{
                Client client = modelMapper.map(clientRequestDto, Client.class);
                libraryRepository.save(client);
