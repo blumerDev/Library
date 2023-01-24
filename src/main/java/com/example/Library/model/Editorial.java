@@ -9,14 +9,9 @@ import lombok.*;
 
 @Setter @Getter
 @Entity
-public class Client{
+public class Editorial {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private Long documento;
+    private String id;
     private String nombre;
-    private String apellido;
-    private String telefono;
-    private boolean alta;
-
 }

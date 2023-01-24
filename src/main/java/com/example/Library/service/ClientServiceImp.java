@@ -1,23 +1,23 @@
 package com.example.Library.service;
 import com.example.Library.dto.request.ClientRequestDto;
+import com.example.Library.dto.request.MensajeDto;
 import com.example.Library.dto.response.ClientResponseDto;
 import com.example.Library.dto.response.MessageDto;
 import com.example.Library.exeptions.MyExeptions;
 import com.example.Library.model.Client;
-import com.example.Library.repository.LibraryRepository;
+import com.example.Library.repository.ClientRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ClientServiceImp implements IClientService{
 
     @Autowired
-    private LibraryRepository<Client> libraryRepository;
+    private ClientRepository clientRepository;
 
    private ModelMapper modelMapper = new ModelMapper();
 
@@ -43,7 +43,7 @@ public class ClientServiceImp implements IClientService{
 
     @Override
     public List<ClientResponseDto> listClient() {
-         return  libraryRepository.findAll()
+         return  clientRepository.findAll()
                 .stream()
                 .map(element -> modelMapper.map(element,ClientResponseDto.class))
                 .toList();
@@ -57,11 +57,11 @@ public class ClientServiceImp implements IClientService{
     }
     @Transactional
     @Override
-    public String addNewClient(ClientRequestDto clientRequestDto){
+    public MensajeDto addNewClient(ClientRequestDto clientRequestDto){
            try{
                Client client = modelMapper.map(clientRequestDto, Client.class);
-               libraryRepository.save(client);
-               return "The client was created successfully";
+               clientRepository.save(client);
+               return new MensajeDto ("The client was created successfully");
            }catch (MyExeptions e){
                throw new MyExeptions(new MessageDto("Has been a problem"));
            }

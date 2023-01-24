@@ -21,7 +21,7 @@ public class ClientController {
     private IClientService clientService;
     @PostMapping("/addNewClient")
     public ResponseEntity<?> cliente(@RequestBody ClientRequestDto clientRequestDto){
-        return new ResponseEntity<>(new MensajeDto(clientService.addNewClient(clientRequestDto)), HttpStatus.OK);
+        return new ResponseEntity<>(clientService.addNewClient(clientRequestDto), HttpStatus.OK);
     }
     @GetMapping("/list")
     public ResponseEntity<List<ClientResponseDto>> list(){

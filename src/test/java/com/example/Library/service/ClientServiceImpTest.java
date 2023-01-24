@@ -1,16 +1,17 @@
 package com.example.Library.service;
 
-import com.example.Library.dto.request.ClientRequestDto;
-import com.example.Library.repository.LibraryRepository;
-import com.example.Library.util.ClientServiceUtil;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 class ClientServiceImpTest {
+
     @Mock
     private LibraryRepository libraryRepository;
 
@@ -27,12 +28,15 @@ class ClientServiceImpTest {
     }
 
     @Test
-    void create() {
+    void addNewClient() {
        //arrange
-
+      /*  ClientRequestDto clientRequestDto = new ClientRequestDto();
+        when(libraryRepository.save(clientRequestDto)).thenThrow(MyExeptions.class);
         //act
+        MensajeDto = clientService.addNewClient(clientRequestDto);
         // assert
-
+       //assertEquals("Has been a problem",message);
+*/
     }
 
     @Test
