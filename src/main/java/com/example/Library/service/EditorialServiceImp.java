@@ -1,7 +1,7 @@
 package com.example.Library.service;
 
 import com.example.Library.dto.request.EditorialRequestDto;
-import com.example.Library.dto.request.MensajeDto;
+import com.example.Library.dto.request.MessageDto;
 import com.example.Library.exeptions.MyExeptions;
 import com.example.Library.model.Editorial;
 import com.example.Library.repository.EditorialRepository;
@@ -13,16 +13,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class EditorialServiceImp implements IEditorialService{
 
     @Autowired
-    private EditorialRepo editorialRepo;
+    private EditorialRepository editorialRepo;
     private ModelMapper modelMapper = new ModelMapper();
     @Autowired
     private EditorialRepository editorialRepository;
 
     @Transactional
     @Override
-    public MensajeDto addNewEditorial(EditorialRequestDto editorialRequestDto)throws MyExeptions {
+    public MessageDto addNewEditorial(EditorialRequestDto editorialRequestDto)throws MyExeptions {
         Editorial editorial = modelMapper.map(editorialRequestDto, Editorial.class);
         editorialRepository.save(editorial);
-        return new MensajeDto("The editorial was created successfully");
+        return new MessageDto("The editorial was created successfully");
     }
 }

@@ -1,17 +1,12 @@
 package com.example.Library.controller;
 
 import com.example.Library.dto.request.EditorialRequestDto;
-import com.example.Library.dto.request.MensajeDto;
-import com.example.Library.service.EditorialServiceImp;
 import com.example.Library.service.IEditorialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController("editorial")
 public class EditorialController {

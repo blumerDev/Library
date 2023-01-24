@@ -1,8 +1,7 @@
 package com.example.Library.service;
 import com.example.Library.dto.request.ClientRequestDto;
-import com.example.Library.dto.request.MensajeDto;
+import com.example.Library.dto.request.MessageDto;
 import com.example.Library.dto.response.ClientResponseDto;
-import com.example.Library.dto.response.MessageDto;
 import com.example.Library.exeptions.MyExeptions;
 import com.example.Library.model.Client;
 import com.example.Library.repository.ClientRepository;
@@ -57,14 +56,11 @@ public class ClientServiceImp implements IClientService{
     }
     @Transactional
     @Override
-    public MensajeDto addNewClient(ClientRequestDto clientRequestDto){
-           try{
-               Client client = modelMapper.map(clientRequestDto, Client.class);
-               clientRepository.save(client);
-               return new MensajeDto ("The client was created successfully");
-           }catch (MyExeptions e){
-               throw new MyExeptions(new MessageDto("Has been a problem"));
-           }
+    public MessageDto addNewClient(ClientRequestDto clientRequestDto){
+        Client client = modelMapper.map(clientRequestDto, Client.class);
+        clientRepository.save(client);
+        return new MessageDto("El cliente fue creado correctamente");
+
     }
 
     @Override
