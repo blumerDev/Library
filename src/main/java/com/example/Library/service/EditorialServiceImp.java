@@ -12,8 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class EditorialServiceImp implements IEditorialService{
 
-    @Autowired
-    private EditorialRepository editorialRepo;
     private ModelMapper modelMapper = new ModelMapper();
     @Autowired
     private EditorialRepository editorialRepository;
@@ -23,6 +21,6 @@ public class EditorialServiceImp implements IEditorialService{
     public MessageDto addNewEditorial(EditorialRequestDto editorialRequestDto)throws MyExeptions {
         Editorial editorial = modelMapper.map(editorialRequestDto, Editorial.class);
         editorialRepository.save(editorial);
-        return new MessageDto("The editorial was created successfully");
+        return new MessageDto("La editoria fue creada correctamente","CREATE");
     }
 }

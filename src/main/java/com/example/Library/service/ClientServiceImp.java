@@ -1,8 +1,10 @@
 package com.example.Library.service;
 import com.example.Library.dto.request.ClientRequestDto;
+import com.example.Library.dto.request.ErrorDto;
 import com.example.Library.dto.request.MessageDto;
 import com.example.Library.dto.response.ClientResponseDto;
 import com.example.Library.exeptions.MyExeptions;
+import com.example.Library.exeptions.UserNotFoundExeption;
 import com.example.Library.model.Client;
 import com.example.Library.repository.ClientRepository;
 import org.modelmapper.ModelMapper;
@@ -21,25 +23,13 @@ public class ClientServiceImp implements IClientService{
    private ModelMapper modelMapper = new ModelMapper();
 
 
-   /* @Override
-    public void editCliente(String id, Long document, String nombre, String apellido, String telefono) throws MyExeptions {
-        validateId(id);
-        validate(document,nombre,apellido,telefono);
-        Optional<Cliente> rs = clienteRepository.findById(id);
-        if (rs.isPresent()){
-            Cliente cliente = rs.get();
-            cliente.setDocumento(document);
-            cliente.setApellido(apellido);
-            cliente.setNombre(nombre);
-            cliente.setTelefono(telefono);
-            clienteRepository.save(cliente);
-        }
+    @Transactional
+    @Override
+    public MessageDto addNewClient(ClientRequestDto clientRequestDto){
+        Client client = modelMapper.map(clientRequestDto, Client.class);
+        clientRepository.save(client);
+        return new MessageDto("El cliente fue creado correctamente","CREATE");
     }
-    /*@Override
-    public Cliente getOne(String id) {
-        return clienteRepository.getReferenceById(id);
-    }*/
-
     @Override
     public List<ClientResponseDto> listClient() {
          return  clientRepository.findAll()
@@ -49,23 +39,24 @@ public class ClientServiceImp implements IClientService{
     }
 
     @Override
-    public void editCliente(String id, Long document, String nombre, String apellido, String telefono) throws MyExeptions {
-        /*if(id == null){
-            throw new MyExeptions("Not")
-        }*/
+    @Mapper(componentModel = "spring")
+    public MessageDto updateById(Long id, ClientRequestDto clientRequestDto){
+        if(!clientRepository.existsById(id)){
+            throw new UserNotFoundExeption(new ErrorDto("El usuario no fue encontrado"));
+        }
+        clientRepository.update
+        save(clientRequestDto);
+        return new MessageDto("El cliente fue actualizado correctamente ", "UPDATE");
     }
-    @Transactional
+
     @Override
-    public MessageDto addNewClient(ClientRequestDto clientRequestDto){
+    public void delete(Long id) throws MyExeptions {
+
+    }
+
+    private void save(ClientRequestDto clientRequestDto){
         Client client = modelMapper.map(clientRequestDto, Client.class);
         clientRepository.save(client);
-        return new MessageDto("El cliente fue creado correctamente");
-
-    }
-
-    @Override
-    public void delete(String id) throws MyExeptions {
-
     }
 
 

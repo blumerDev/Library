@@ -9,4 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MessageDto {
     private String messege;
+    private String action;
 }

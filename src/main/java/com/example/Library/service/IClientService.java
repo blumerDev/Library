@@ -10,7 +10,9 @@ import java.util.List;
 @Service
 public interface IClientService {
     public List<ClientResponseDto> listClient();
-    public void editCliente(String id,Long document, String nombre,String apellido,String telefono) throws MyExeptions;
     public MessageDto addNewClient(ClientRequestDto clientRequestDto) throws MyExeptions;
-    public void delete(String id) throws MyExeptions;
+
+    MessageDto updateById(Long id, ClientRequestDto clientRequestDto);
+
+    public void delete(Long id) throws MyExeptions;
 }

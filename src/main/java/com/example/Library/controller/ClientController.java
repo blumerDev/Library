@@ -1,6 +1,7 @@
 package com.example.Library.controller;
 
 import com.example.Library.dto.request.ClientRequestDto;
+import com.example.Library.dto.request.MessageDto;
 import com.example.Library.dto.response.ClientResponseDto;
 import com.example.Library.service.IClientService;
 import jakarta.validation.Valid;
@@ -25,22 +26,12 @@ public class ClientController {
     public ResponseEntity<List<ClientResponseDto>> list(){
         return new ResponseEntity<>(clientService.listClient(),HttpStatus.OK);
     }
-    /*
-    @GetMapping("/update/{id}")
-    public String update(@PathVariable String id, ModelMap model){
-        model.put("cliente",clienteImp.getOne(id));
-        return "clienteUpdate.html";
-    }
+
     @PostMapping("/update/{id}")
-    public String update(@PathVariable String id, Long documento,String nombre, String apellido, String telefono, ModelMap model){
-        try {
-            clienteImp.editCliente(id,documento,nombre,apellido,telefono);
-            return "redirect:../list";
-        } catch (MyExeptions e) {
-           model.put("fail",e.getMessage());
-           return "clienteUpdate.html";
-        }
+    public ResponseEntity<MessageDto> update(@PathVariable Long id, @RequestBody ClientRequestDto clientRequestDto){
+           return new ResponseEntity<>(clientService.updateById((id),clientRequestDto), HttpStatus.OK);
     }
+     /*
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable String id, ModelMap model){
         model.put("cliente", clienteImp.getOne(id));
