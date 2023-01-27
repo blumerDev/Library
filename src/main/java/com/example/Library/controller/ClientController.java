@@ -1,9 +1,9 @@
 package com.example.Library.controller;
 
 import com.example.Library.dto.request.ClientRequestDto;
-import com.example.Library.dto.request.MessageDto;
 import com.example.Library.dto.response.ClientResponseDto;
-import com.example.Library.service.IClientService;
+import com.example.Library.dto.response.MessageDto;
+import com.example.Library.service.interfaces.IClientService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,16 +20,16 @@ public class ClientController {
     private IClientService clientService;
     @PostMapping("/newClient")
     public ResponseEntity<?> cliente(@RequestBody @Valid ClientRequestDto clientRequestDto){
-        return new ResponseEntity<>(clientService.addNewClient(clientRequestDto), HttpStatus.OK);
+        return new ResponseEntity<>(clientService.saveEntity(clientRequestDto), HttpStatus.OK);
     }
     @GetMapping("/list")
-    public ResponseEntity<List<ClientResponseDto>> list(){
-        return new ResponseEntity<>(clientService.listClient(),HttpStatus.OK);
+    public ResponseEntity<List<?>> list(){
+        return new ResponseEntity<>(clientService.getAllEntities(),HttpStatus.OK);
     }
 
     @PostMapping("/update/{id}")
-    public ResponseEntity<MessageDto> update(@PathVariable Long id, @RequestBody ClientRequestDto clientRequestDto){
-           return new ResponseEntity<>(clientService.updateById((id),clientRequestDto), HttpStatus.OK);
+    public ResponseEntity<ClientResponseDto> update(@PathVariable Integer id, @RequestBody ClientRequestDto clientRequestDto){
+           return new ResponseEntity<>(clientService.update(id,clientRequestDto),HttpStatus.OK);
     }
      /*
     @GetMapping("/delete/{id}")

@@ -1,6 +1,6 @@
 package com.example.Library.dto.request;
 
 
-public class EditorialRequestDto {
+public class EditorialDto {
     private String nombre;
 }

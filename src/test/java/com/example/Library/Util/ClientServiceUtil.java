@@ -1,4 +1,4 @@
-package com.example.Library.util;
+package com.example.Library.Util;
 
 import com.example.Library.dto.request.ClientRequestDto;
 

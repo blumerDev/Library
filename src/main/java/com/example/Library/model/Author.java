@@ -6,17 +6,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
-
 @Setter @Getter
+@NoArgsConstructor
+@AllArgsConstructor @Builder
 @Entity
-public class Client{
+public class Author {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private Long documento;
     private String nombre;
-    private String apellido;
-    private String telefono;
-    private boolean alta;
-
 }

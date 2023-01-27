@@ -1,6 +1,6 @@
 package com.example.Library.dto.request;
 
-import jakarta.validation.constraints.Max;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor @NoArgsConstructor
 @Builder
 public class ClientRequestDto {
+    @JsonIgnore
+    private Long id;
     @NotNull(message = "El documento no puede ser nulo")
     private Long documento;
     @NotBlank(message = "El nombre no puede estar en blanco")
