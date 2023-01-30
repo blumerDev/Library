@@ -19,7 +19,7 @@ public class ClientController {
     @Autowired
     private IClientService clientService;
     @PostMapping("/newClient")
-    public ResponseEntity<?> cliente(@RequestBody @Valid ClientRequestDto clientRequestDto){
+    public ResponseEntity<?> newCliente(@RequestBody @Valid ClientRequestDto clientRequestDto){
         return new ResponseEntity<>(clientService.saveEntity(clientRequestDto), HttpStatus.OK);
     }
     @GetMapping("/list")

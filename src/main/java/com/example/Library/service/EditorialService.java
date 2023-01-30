@@ -3,6 +3,7 @@ package com.example.Library.service;
 import com.example.Library.dto.request.EditorialDto;
 import com.example.Library.dto.response.MessageDto;
 import com.example.Library.exeptions.MyExeptions;
+import com.example.Library.model.Client;
 import com.example.Library.model.Editorial;
 import com.example.Library.repository.IEditorialRepository;
 import com.example.Library.service.interfaces.IEditorialService;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class EditorialServiceImp implements IEditorialService {
+public class EditorialService implements IEditorialService {
 
     private ModelMapper modelMapper = new ModelMapper();
     @Autowired
@@ -25,7 +26,10 @@ public class EditorialServiceImp implements IEditorialService {
     public MessageDto addNewEditorial(EditorialDto editorialDto)throws MyExeptions {
         Editorial editorial = modelMapper.map(editorialDto, Editorial.class);
         IEditorialRepository.save(editorial);
-        return new MessageDto("La editoria fue creada correctamente","CREATE");
+        return MessageDto.builder()
+                .message("La editorial fue creado correctamente")
+                .action("CREATE")
+                .build();
     }
 
     @Override

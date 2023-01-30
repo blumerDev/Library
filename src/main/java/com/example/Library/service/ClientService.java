@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ClientServiceImp implements IClientService {
+public class ClientService implements IClientService {
 
     @Autowired
     private IClientRepository IClientRepository;
@@ -32,14 +32,11 @@ public class ClientServiceImp implements IClientService {
                 .message("El cliente fue creado correctamente")
                 .action("CREATE")
                 .build();
-
     }
-
     @Override
     public ClientRequestDto getEntityById(Integer integer) {
         return null;
     }
-
 
     @Override
     public List<ClientRequestDto> getAllEntities() {

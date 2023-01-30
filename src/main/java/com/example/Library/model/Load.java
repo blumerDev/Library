@@ -18,11 +18,8 @@ public class Load {
     private Boolean alta;
 
     @OneToOne
-    private Book book;
-
-    @OneToOne
     private Client client;
     @OneToOne
-    private Book load;
+    private Book book;
 
 }

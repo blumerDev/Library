@@ -15,18 +15,18 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String titulo;
-    private Integer ejemplares;
+    private String title;
+    private int ejemplares;
 
     @Temporal(TemporalType.DATE)
     private Date alta;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     private Author author;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     private Editorial editorial;
 
-    @OneToOne(mappedBy = "load")
+    @OneToOne(mappedBy = "book", cascade = CascadeType.REMOVE)
     private Load load;
 }

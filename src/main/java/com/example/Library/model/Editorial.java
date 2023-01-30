@@ -15,7 +15,6 @@ public class Editorial {
     private int id;
     private String nombre;
 
-    @OneToMany
+    @OneToMany(mappedBy = "editorial")
     private List<Book> bookList;
-
 }

@@ -10,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
-class ClientServiceImpTest {
+class ClientServiceTest {
 
     @Mock
     private LibraryRepository libraryRepository;
 
     @InjectMocks
-    private ClientServiceImp clientService;
+    private ClientService clientService;
 
     @Test
     void listClient() {
