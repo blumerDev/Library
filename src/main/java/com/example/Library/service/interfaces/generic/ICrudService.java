@@ -9,4 +9,5 @@ public interface ICrudService<T,ID> {
     T getEntityById(ID id);
     List<T> getAllEntities();
     MessageDto deleteEntity(ID id);
+    T updateEntityById(T entity, ID id);
 }

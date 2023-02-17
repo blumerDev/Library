@@ -9,8 +9,11 @@ import com.example.Library.service.interfaces.IAuthorService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class AuthorService implements IAuthorService {
     @Autowired
@@ -40,4 +43,16 @@ public class AuthorService implements IAuthorService {
     public MessageDto deleteEntity(Integer integer) {
         return null;
     }
+
+    @Override
+    public AuthorDto updateEntityById(AuthorDto authorDto, Integer id) {
+        Optional<Author> author = authorRepository.findById(id);
+        if(!author.isPresent()){
+            throw new NotFoundException("No existe el autor");
+        }
+        author.get().setName(authorDto.getName());
+        Author author1 = authorRepository.save(author.get());
+        return modelMapper.map(author1, AuthorDto.class);}
+
+
 }
