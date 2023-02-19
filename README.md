@@ -37,6 +37,30 @@ El proyecto es una API para poder manejar una biblioteca
 | :-------- | :------- | :-------------------------------- |
 |       |  | **Devuelve la lista de todos los clientes|
 
+## Author enpoints
+
+#### Post para agregar un autor
+
+```http
+  POST /author/addNewAuthor
+```
+
+| Parámetro | Type     | Descripción                |
+| :-------- | :------- | :------------------------- |
+| `AuthorDTO` | `DTO` | **Se recibe un authorDto y se lo persiste en db |
+
+
+
+#### Post para hacer un update de author
+
+```http
+  POST /author/updateAuthor/{id}
+```
+
+| Parámetro | Type     | Descripción                |
+| :-------- | :------- | :------------------------- |
+| `AuthorDTO` | `DTO` | **Se recibe un authorDto y id. Se modicia dicho autor 
+
 
 Clonar el repositorio
 

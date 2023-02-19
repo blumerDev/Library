@@ -13,7 +13,7 @@ public class Editorial {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String nombre;
+    private String name;
 
     @OneToMany(mappedBy = "editorial")
     private List<Book> bookList;
