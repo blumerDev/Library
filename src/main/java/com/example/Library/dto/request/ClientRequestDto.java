@@ -8,9 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
 public class ClientRequestDto {
     @JsonIgnore
@@ -21,7 +18,7 @@ public class ClientRequestDto {
     private String name;
     private String surname;
     private String telephone;
-    @NotNull(message = "Es necesario dar alta")
-    private boolean isRegister;
+    @NotNull(message = "Is necessary activate")
+    private boolean isRegister = true;
 
 }
