@@ -1,44 +1,27 @@
 package com.example.Library.service;
 
-import com.example.Library.dto.response.MessageDto;
+import com.example.Library.dto.MessageDto;
+import com.example.Library.dto.request.EditorialDto;
+import com.example.Library.dto.request.LoadDto;
 import com.example.Library.model.Editorial;
 import com.example.Library.model.Load;
-import com.example.Library.repository.IEditorialRepository;
-import com.example.Library.repository.ILoadRepository;
-import com.example.Library.service.interfaces.ILoadService;
-import org.modelmapper.ModelMapper;
+import com.example.Library.repository.LoadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import java.util.List;
 @Service
-public class LoadService implements ILoadService {
-    private ModelMapper modelMapper = new ModelMapper();
+public class LoadService {
+
+    private final GenericServices genericServices;
+    private final LoadRepository loadRepository;
+
     @Autowired
-    private ILoadRepository loadRepository;
-    @Override
-    public MessageDto saveEntity(Load objectDto) {
-        Load load = modelMapper.map(objectDto, Load.class);
-        loadRepository.save(load);
-        return MessageDto.builder()
-                .message("El prestamo fue creado correctamente")
-                .action("CREATE")
-                .build();
+    public LoadService(LoadRepository loadRepository, GenericServices genericServices) {
+        this.loadRepository = loadRepository;
+        this.genericServices = genericServices;
     }
 
-    @Override
-    public Load getEntityById(Integer integer) {
-        return null;
-    }
-
-    @Override
-    public List<Load> getAllEntities() {
-        return null;
-    }
-
-    @Override
-    public MessageDto deleteEntity(Integer integer) {
-        return null;
+    public MessageDto saveNewLoad(LoadDto loadDto) {
+        return genericServices.addNewEntity(loadDto, Load.class, loadRepository);
     }
 }
