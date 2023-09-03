@@ -1,22 +1,23 @@
 package com.example.Library.controller;
 
 import com.example.Library.dto.request.EditorialDto;
-import com.example.Library.service.interfaces.IEditorialService;
+import com.example.Library.service.EditorialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController("/editorial")
 public class EditorialController {
 
     @Autowired
-    private IEditorialService editorialService;
+    private EditorialService editorialService;
 
     @PostMapping("/addNewEditorial")
     public ResponseEntity<?> newEditorial(@RequestBody EditorialDto editorialDto) {
-        return new ResponseEntity<>(editorialService.saveEntity(editorialDto), HttpStatus.OK);
+        return new ResponseEntity<>(editorialService.saveNewEditorial(editorialDto), HttpStatus.OK);
     }
 
    /* @GetMapping("/list")

@@ -9,15 +9,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Setter
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    String name;
+    private Long id;
+    private String name;
 }

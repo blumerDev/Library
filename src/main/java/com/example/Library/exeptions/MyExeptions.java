@@ -1,10 +1,9 @@
 package com.example.Library.exeptions;
 
-import com.example.Library.dto.response.MessageDto;
+import com.example.Library.dto.MessageDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @NoArgsConstructor @AllArgsConstructor
