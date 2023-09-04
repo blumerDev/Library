@@ -23,7 +23,7 @@ public class AuthorController {
 
     @PostMapping("/addNewAuthor")
     public HttpStatus newAuthor(@RequestBody @Valid AuthorDto authorDto) {
-        if (authorService.addNewAuthor(authorDto)) {
+        if (authorService.addAuthor(authorDto)) {
             return HttpStatus.OK;
         }
         return HttpStatus.INTERNAL_SERVER_ERROR;
