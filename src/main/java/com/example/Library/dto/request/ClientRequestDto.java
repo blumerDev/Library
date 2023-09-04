@@ -8,19 +8,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor @NoArgsConstructor
 @Builder
 public class ClientRequestDto {
     @JsonIgnore
     private Long id;
-    @NotNull(message = "El documento no puede ser nulo")
-    private Long documento;
-    @NotBlank(message = "El nombre no puede estar en blanco")
-    //@Max(value = 25, message = "El nombre no puede poseer mas de 25 caracteres")
-    private String nombre;
-    private String apellido;
-    private String telefono;
-    @NotNull(message = "Es necesario dar alta")
-    private boolean alta;
+    @NotNull(message = "The register number can not be empty")
+    private Long registerNumber;
+    @NotBlank(message = "The name can not be empty")
+    private String name;
+    private String surname;
+    private String telephone;
+    @NotNull(message = "Is necessary activate")
+    private boolean isRegister = true;
+
 }

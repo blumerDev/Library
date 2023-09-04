@@ -1,55 +1,26 @@
 package com.example.Library.service;
 
 import com.example.Library.dto.request.EditorialDto;
-import com.example.Library.dto.response.MessageDto;
-import com.example.Library.exeptions.MyExeptions;
-import com.example.Library.model.Client;
 import com.example.Library.model.Editorial;
-import com.example.Library.repository.IEditorialRepository;
-import com.example.Library.service.interfaces.IEditorialService;
-import org.modelmapper.ModelMapper;
+import com.example.Library.repository.EditorialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
-public class EditorialService implements IEditorialService {
+public class EditorialService {
 
-    private ModelMapper modelMapper = new ModelMapper();
+    private final GenericServices genericServices;
+    private final EditorialRepository editorialRepository;
+
     @Autowired
-    private IEditorialRepository IEditorialRepository;
-
-    @Transactional
-
-    public MessageDto addNewEditorial(EditorialDto editorialDto)throws MyExeptions {
-        Editorial editorial = modelMapper.map(editorialDto, Editorial.class);
-        IEditorialRepository.save(editorial);
-        return MessageDto.builder()
-                .message("La editorial fue creado correctamente")
-                .action("CREATE")
-                .build();
+    public EditorialService(EditorialRepository EditorialRepository, GenericServices genericServices) {
+        this.editorialRepository = EditorialRepository;
+        this.genericServices = genericServices;
     }
 
-    @Override
-    public MessageDto saveEntity(EditorialDto objectDto) {
-        return null;
-    }
-
-    @Override
-    public EditorialDto getEntityById(Long aLong) {
-        return null;
-    }
-
-    @Override
-    public List<EditorialDto> getAllEntities() {
-        return null;
+    public boolean saveNewEditorial(EditorialDto editorialDto) {
+        return genericServices.addNewEntity(editorialDto, Editorial.class, editorialRepository);
     }
 
 
-    @Override
-    public MessageDto deleteEntity(Long aLong) {
-        return null;
-    }
 }

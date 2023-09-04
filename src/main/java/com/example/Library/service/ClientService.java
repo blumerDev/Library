@@ -1,54 +1,42 @@
 package com.example.Library.service;
+
 import com.example.Library.dto.request.ClientRequestDto;
-import com.example.Library.dto.request.ErrorDto;
-
-import com.example.Library.dto.response.ClientResponseDto;
-import com.example.Library.dto.response.MessageDto;
-import com.example.Library.exeptions.UserNotFoundExeption;
 import com.example.Library.model.Client;
-import com.example.Library.repository.IClientRepository;
-
-import com.example.Library.service.interfaces.IClientService;
-import org.modelmapper.ModelMapper;
+import com.example.Library.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class ClientService implements IClientService {
+public class ClientService {
+
+    private ClientRepository clientRepository;
+    private final GenericServices genericServices;
 
     @Autowired
-    private IClientRepository IClientRepository;
-
-   private ModelMapper modelMapper = new ModelMapper();
-
-
-    @Override
-    public MessageDto saveEntity(ClientRequestDto objectDto) {
-        Client client = modelMapper.map(objectDto, Client.class);
-        IClientRepository.save(client);
-        return MessageDto.builder()
-                .message("El cliente fue creado correctamente")
-                .action("CREATE")
-                .build();
+    public ClientService(ClientRepository clientRepository, GenericServices genericServices) {
+        this.clientRepository = clientRepository;
+        this.genericServices = genericServices;
     }
-    @Override
-    public ClientRequestDto getEntityById(Integer integer) {
+
+    public boolean saveNewClient(ClientRequestDto clientRequestDto) {
+        return genericServices.addNewEntity(clientRequestDto, Client.class, clientRepository);
+    }
+
+    /*public ClientRequestDto getEntityById(Integer integer) {
         return null;
     }
 
-    @Override
+
     public List<ClientRequestDto> getAllEntities() {
-        return  IClientRepository.findAll()
+        return  ClientRepository.findAll()
                 .stream()
                 .map(element -> modelMapper.map(element, ClientRequestDto.class))
                 .toList();
-    }
+    }*/
 
-    @Override
-    public ClientResponseDto update(Integer id, ClientRequestDto clientRequestDto) {
-        if(!IClientRepository.existsById(id)){
+
+    /*public ClientResponseDto update(Integer id, ClientRequestDto clientRequestDto) {
+        if(!ClientRepository.existsById(id)){
             throw new UserNotFoundExeption(new ErrorDto("La entidad no se encontro"));
         }
         var entity = modelMapper.map(clientRequestDto,Client.class);
@@ -56,11 +44,16 @@ public class ClientService implements IClientService {
         return modelMapper.map(entity, ClientResponseDto.class);
     }
 
-    @Override
+
     public MessageDto deleteEntity(Integer id) {
         return null;
     }
 
+
+    public ClientRequestDto updateEntityById(ClientRequestDto entity, Integer integer) {
+        return null;
+    }
+*/
 
    /* @Override
     public void delete(String id) throws MyExeptions {

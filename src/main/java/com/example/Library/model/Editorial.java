@@ -1,20 +1,23 @@
 package com.example.Library.model;
 
-import jakarta.persistence.*;
-import lombok.*;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
-
-@Setter @Getter
-@AllArgsConstructor @NoArgsConstructor
+@Setter
+@Getter
 @Entity
 public class Editorial {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String name;
-
+    Long id;
+    String name;
     @OneToMany(mappedBy = "editorial")
-    private List<Book> bookList;
+    List<Book> bookList;
 }

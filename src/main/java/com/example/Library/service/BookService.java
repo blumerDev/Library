@@ -1,42 +1,29 @@
 package com.example.Library.service;
 
-import com.example.Library.dto.response.MessageDto;
-import com.example.Library.model.Author;
+import com.example.Library.dto.request.BookDto;
 import com.example.Library.model.Book;
-import com.example.Library.repository.IBookRepository;
-import com.example.Library.service.interfaces.IBookService;
-import org.modelmapper.ModelMapper;
+import com.example.Library.repository.BookRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 @Service
-public class BookService implements IBookService {
+public class BookService {
+    private final GenericServices genericServices;
     @Autowired
-    private IBookRepository bookRepository;
-    private ModelMapper modelMapper = new ModelMapper();
-    @Override
-    public MessageDto saveEntity(Book objectDto) {
-        Book book = modelMapper.map(objectDto, Book.class);
-        bookRepository.save(book);
-        return MessageDto.builder()
-                .message("El libro fue creado correctamente")
-                .action("CREATE")
-                .build();
+    private final BookRepository bookRepository;
+
+    @Autowired
+    public BookService(BookRepository bookRepository, GenericServices genericServices) {
+        this.bookRepository = bookRepository;
+        this.genericServices = genericServices;
     }
 
-    @Override
-    public Book getEntityById(Integer integer) {
-        return null;
+    public boolean saveBook(BookDto bookDto) {
+        return genericServices.addNewEntity(bookDto, Book.class, bookRepository);
     }
 
-    @Override
-    public List<Book> getAllEntities() {
-        return null;
-    }
-
-    @Override
-    public MessageDto deleteEntity(Integer integer) {
-        return null;
+    public List<?> getAllEntities() {
+        return genericServices.getAllEntities(Book.class, bookRepository);
     }
 }

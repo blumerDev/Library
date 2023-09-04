@@ -1,21 +1,24 @@
 package com.example.Library.model;
 
-import jakarta.persistence.*;
-import lombok.*;
-
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import java.util.Date;
-@Setter @Getter
-@NoArgsConstructor
-@AllArgsConstructor @Builder
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 @Entity
 public class Load {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private Date date;
-    private Date devolucion;
-    private Boolean alta;
+    Long id;
+    Date date;
+    Date giveBack;
+    Boolean isRegister;
 
     @OneToOne
     private Client client;
