@@ -1,6 +1,5 @@
 package com.example.Library.service;
 
-import com.example.Library.dto.MessageDto;
 import com.example.Library.dto.request.ClientRequestDto;
 import com.example.Library.model.Client;
 import com.example.Library.repository.ClientRepository;
@@ -19,7 +18,7 @@ public class ClientService {
         this.genericServices = genericServices;
     }
 
-    public MessageDto saveNewClient(ClientRequestDto clientRequestDto) {
+    public boolean saveNewClient(ClientRequestDto clientRequestDto) {
         return genericServices.addNewEntity(clientRequestDto, Client.class, clientRepository);
     }
 

@@ -1,9 +1,6 @@
 package com.example.Library.service;
 
-import com.example.Library.dto.MessageDto;
-import com.example.Library.dto.request.ClientRequestDto;
 import com.example.Library.dto.request.EditorialDto;
-import com.example.Library.model.Client;
 import com.example.Library.model.Editorial;
 import com.example.Library.repository.EditorialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +18,7 @@ public class EditorialService {
         this.genericServices = genericServices;
     }
 
-    public MessageDto saveNewEditorial(EditorialDto editorialDto) {
+    public boolean saveNewEditorial(EditorialDto editorialDto) {
         return genericServices.addNewEntity(editorialDto, Editorial.class, editorialRepository);
     }
 

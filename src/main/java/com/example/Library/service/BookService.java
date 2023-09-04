@@ -1,11 +1,9 @@
 package com.example.Library.service;
 
-import com.example.Library.dto.MessageDto;
-import com.example.Library.dto.request.AuthorDto;
 import com.example.Library.dto.request.BookDto;
-import com.example.Library.model.Author;
 import com.example.Library.model.Book;
 import com.example.Library.repository.BookRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +19,11 @@ public class BookService {
         this.genericServices = genericServices;
     }
 
-    public MessageDto saveNewBook(BookDto bookDto) {
+    public boolean saveBook(BookDto bookDto) {
         return genericServices.addNewEntity(bookDto, Book.class, bookRepository);
+    }
+
+    public List<?> getAllEntities() {
+        return genericServices.getAllEntities(Book.class, bookRepository);
     }
 }

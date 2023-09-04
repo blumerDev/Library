@@ -21,7 +21,7 @@ public class LoadService {
         this.genericServices = genericServices;
     }
 
-    public MessageDto saveNewLoad(LoadDto loadDto) {
+    public boolean saveNewLoad(LoadDto loadDto) {
         return genericServices.addNewEntity(loadDto, Load.class, loadRepository);
     }
 }

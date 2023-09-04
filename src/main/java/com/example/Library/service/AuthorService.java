@@ -19,18 +19,18 @@ public class AuthorService {
         this.authorRepository = authorRepository;
     }
 
-    public MessageDto addNewAuthor(AuthorDto authorDto) {
+    public boolean addAuthor(AuthorDto authorDto) {
         return genericServices.addNewEntity(authorDto, Author.class, authorRepository);
+    }
+
+    public List<?> getAllEntities() {
+        return genericServices.getAllEntities(Author.class, authorRepository);
     }
 
     public AuthorDto getEntityById(Integer integer) {
         return null;
     }
 
-
-    public List<AuthorDto> getAllEntities() {
-        return null;
-    }
 
 
     public MessageDto deleteEntity(Integer integer) {
