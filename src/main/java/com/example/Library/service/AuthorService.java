@@ -10,21 +10,21 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthorService {
-    private final GenericServices genericServices;
+    private final AbstractServices abstractServices;
     private final AuthorRepository authorRepository;
 
     @Autowired
-    public AuthorService(GenericServices genericServices, AuthorRepository authorRepository) {
-        this.genericServices = genericServices;
+    public AuthorService(AbstractServices abstractServices, AuthorRepository authorRepository) {
+        this.abstractServices = abstractServices;
         this.authorRepository = authorRepository;
     }
 
     public boolean addAuthor(AuthorDto authorDto) {
-        return genericServices.addNewEntity(authorDto, Author.class, authorRepository);
+        return abstractServices.addNewEntity(authorDto, Author.class, authorRepository);
     }
 
     public List<?> getAllEntities() {
-        return genericServices.getAllEntities(Author.class, authorRepository);
+        return abstractServices.getAllEntities(Author.class, authorRepository);
     }
 
     public AuthorDto getEntityById(Integer integer) {

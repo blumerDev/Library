@@ -9,17 +9,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class EditorialService {
 
-    private final GenericServices genericServices;
+    private final AbstractServices abstractServices;
     private final EditorialRepository editorialRepository;
 
     @Autowired
-    public EditorialService(EditorialRepository EditorialRepository, GenericServices genericServices) {
+    public EditorialService(EditorialRepository EditorialRepository, AbstractServices abstractServices) {
         this.editorialRepository = EditorialRepository;
-        this.genericServices = genericServices;
+        this.abstractServices = abstractServices;
     }
 
     public boolean saveNewEditorial(EditorialDto editorialDto) {
-        return genericServices.addNewEntity(editorialDto, Editorial.class, editorialRepository);
+        return abstractServices.addNewEntity(editorialDto, Editorial.class, editorialRepository);
     }
 
 

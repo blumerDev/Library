@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GenericServices {
+public class AbstractServices {
 
     private final ModelMapper modelMapper = new ModelMapper();
 

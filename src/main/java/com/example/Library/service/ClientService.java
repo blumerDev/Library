@@ -9,17 +9,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientService {
 
-    private ClientRepository clientRepository;
-    private final GenericServices genericServices;
+    private final ClientRepository clientRepository;
+    private final AbstractServices abstractServices;
 
     @Autowired
-    public ClientService(ClientRepository clientRepository, GenericServices genericServices) {
+    public ClientService(ClientRepository clientRepository, AbstractServices abstractServices) {
         this.clientRepository = clientRepository;
-        this.genericServices = genericServices;
+        this.abstractServices = abstractServices;
     }
 
     public boolean saveNewClient(ClientRequestDto clientRequestDto) {
-        return genericServices.addNewEntity(clientRequestDto, Client.class, clientRepository);
+        return abstractServices.addNewEntity(clientRequestDto, Client.class, clientRepository);
     }
 
     /*public ClientRequestDto getEntityById(Integer integer) {
