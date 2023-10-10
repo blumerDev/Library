@@ -1,42 +1,41 @@
 package com.example.Library.service;
 
-import com.example.Library.dto.response.MessageDto;
-import com.example.Library.model.Author;
+import com.example.Library.Client.BookClient;
+import com.example.Library.dto.request.BookDto;
+import com.example.Library.dto.response.BookApiResponse;
 import com.example.Library.model.Book;
-import com.example.Library.repository.IBookRepository;
-import com.example.Library.service.interfaces.IBookService;
-import org.modelmapper.ModelMapper;
+import com.example.Library.repository.BookRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 @Service
-public class BookService implements IBookService {
+public class BookService {
+
+    private final AbstractServices abstractServices;
+    private final BookRepository bookRepository;
+    private final BookClient bookClient;
+
+    private final ObjectMapper mapper = new ObjectMapper();
+
     @Autowired
-    private IBookRepository bookRepository;
-    private ModelMapper modelMapper = new ModelMapper();
-    @Override
-    public MessageDto saveEntity(Book objectDto) {
-        Book book = modelMapper.map(objectDto, Book.class);
-        bookRepository.save(book);
-        return MessageDto.builder()
-                .message("El libro fue creado correctamente")
-                .action("CREATE")
-                .build();
+    public BookService(BookRepository bookRepository, AbstractServices abstractServices, BookClient bookClient) {
+        this.bookRepository = bookRepository;
+        this.abstractServices = abstractServices;
+        this.bookClient = bookClient;
     }
 
-    @Override
-    public Book getEntityById(Integer integer) {
-        return null;
+    public boolean saveBook(BookDto bookDto) {
+        return abstractServices.addNewEntity(bookDto, Book.class, bookRepository);
     }
 
-    @Override
-    public List<Book> getAllEntities() {
-        return null;
+    public List<?> getAllEntities() {
+        return abstractServices.getAllEntities(Book.class, bookRepository);
     }
 
-    @Override
-    public MessageDto deleteEntity(Integer integer) {
-        return null;
+    public BookApiResponse getBookList() throws IOException, InterruptedException {
+        return mapper.reader().forType(BookApiResponse.class).readValue(bookClient.getBooks());
     }
 }

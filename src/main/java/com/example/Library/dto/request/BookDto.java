@@ -13,11 +13,11 @@ import java.util.Date;
 @Setter @Getter
 public class BookDto {
 
-    private String titulo;
-    private int ejemplares;
+    private String title;
+    private int available;
 
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date alta;
+    private Date isRegister;
 
     private Author author;
 
